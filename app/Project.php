@@ -11,6 +11,4 @@ class Project extends Model
     'end_date', 'active', 'budget', 'description'];
 
     public $timestamps = false;
-    
-    
 }
