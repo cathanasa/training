@@ -1,24 +1,21 @@
 <!doctype html>
 <html>
 	<head>
-		<title>New project</title>
+		<title>Edit project</title>
 	</head>
 	<body>
-		<b><h1>New project</h1></b>
+		<b><h1>Edit project</h1></b>
 		<div class="content">
 			<form class="" action="{{URL::to('store')}}" method="post">
 
-				@csrf
-				<!--{{csrf_field()}}-->
-
 				<div>
 					Name:<br>
-					<input type="text" name="name" value="">
+					<input type="text" name="name" value="{{ $project->name }}">
 				</div>
 
 				<div>
 					<br>Customer:<br>
-					<input type="text" name="customer" value="">
+					<input type="text" name="customer" value="{{ $project->customer }}">
 				</div>
 
 				<div>
@@ -42,7 +39,7 @@
 
 				<div>
 					<br>Budget:<br>
-					<input type="text" name="budget" value="">
+					<input type="text" name="budget" value="{{ $project->budget }}">
 				</div>
 
 				<div>
@@ -53,7 +50,6 @@
 				<div>
 					<br>
 					<button type="submit" name="button">OK</button>
-					<a href="{{URL::to('index')}}">Cancel</a>
 				</div>
 			</form>
 		</div>	

@@ -17,16 +17,21 @@
 	            <th>Actions</th>
 	         </tr>
 	         @foreach ($projects as $i)
-	         <tr>
-	            <td>{{ $i->id }}</td>
-	            <td>{{ $i->name }}</td>
-	            <td>{{ $i->customer }}</td>
-	            <td>{{ $i->start_date }}</td>
-	            <td>{{ $i->end_date }}</td>
-	            <td>{{ $i->active }}</td>
-	            <td>{{ $i->budget }}</td>
-	            <td></td>
-	         </tr>
+		         <tr>
+		            <td>{{ $i->id }}</td>
+		            <td>{{ $i->name }}</td>
+		            <td>{{ $i->customer }}</td>
+		            <td>{{ $i->start_date }}</td>
+		            <td>{{ $i->end_date }}</td>
+		            <td>{{ $i->active }}</td>
+		            <td>{{ $i->budget }}</td>
+		            <td>
+		            	<!--<a href="{{URL::to('index')}}">View</a>
+		            	<a href="{{URL::to('index')}}">Edit</a>
+		            	<a href="{{URL::to('index')}}">Delete</a>-->
+		            	<a href="{{ route('edit', ['id'=>$i->id]) }}">Edit</a>
+		            </td>
+		         </tr>
 	         @endforeach
       	</table>
       	<form class="" action="{{URL::to('new')}}" method="get">

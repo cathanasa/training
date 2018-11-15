@@ -25,3 +25,7 @@ Route::get('index', 'ProjectController@viewProjects');
 
 
 
+Route::get('edit/{id}', ['uses'=>'ProjectController@edit', 'as'=>'edit']);
+
+
+

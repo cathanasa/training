@@ -15,6 +15,13 @@ class ProjectController extends Controller
         return view('viewAll', ['projects' => $project]);
     }
 
+    public function edit($id){
+        //$project = DB::table('projects')->where('id', $id)->get();
+        //return view('editProject', ['projects' => $project]);
+        $project = Project::find($id);
+        return view('editProject', ['project' => $project]);
+    }
+
     public function store(Request $request){
     $project = new Project;
     
