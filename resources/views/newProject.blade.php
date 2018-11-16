@@ -9,7 +9,6 @@
 			<form class="" action="{{URL::to('store')}}" method="post">
 
 				@csrf
-				<!--{{csrf_field()}}-->
 
 				<div>
 					Name:<br>

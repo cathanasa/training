@@ -1,10 +1,10 @@
 </doctype html>
 <html>
 	<head>
-		<title>View projects</title>
+		<title>Projects</title>
 	</head>	
 	<body>
-		<b><h1>View projects</h1></b>
+		<b><h1>Projects</h1></b>
 		<table border = 1>
 	         <tr>
 	            <th>S/N</th>
@@ -23,13 +23,22 @@
 		            <td>{{ $i->customer }}</td>
 		            <td>{{ $i->start_date }}</td>
 		            <td>{{ $i->end_date }}</td>
-		            <td>{{ $i->active }}</td>
+		            <td>
+		            	@if ($i->active === 1)
+		            		Yes
+						@else
+							No
+						@endif		            		
+		            </td>
 		            <td>{{ $i->budget }}</td>
 		            <td>
-		            	<!--<a href="{{URL::to('index')}}">View</a>
-		            	<a href="{{URL::to('index')}}">Edit</a>
-		            	<a href="{{URL::to('index')}}">Delete</a>-->
+		            	<a href="{{ route('view', ['id'=>$i->id]) }}">View</a>
 		            	<a href="{{ route('edit', ['id'=>$i->id]) }}">Edit</a>
+		            	<form class="" action="{{ route('delete', ['id'=>$i->id]) }}" method="post">
+		            		@method('DELETE')
+		            		@csrf
+		            		<button type="submit" name="button">delete</button>
+		            	</form>
 		            </td>
 		         </tr>
 	         @endforeach

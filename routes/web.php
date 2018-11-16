@@ -19,13 +19,22 @@ Route::get('new', function(){
 	return view('newProject');
 });
 
-Route::post('store', 'ProjectController@store');
-
 Route::get('index', 'ProjectController@viewProjects');
 
-
+Route::get('view/{id}', ['uses'=>'ProjectController@view', 'as'=>'view']);
 
 Route::get('edit/{id}', ['uses'=>'ProjectController@edit', 'as'=>'edit']);
+
+Route::post('store', 'ProjectController@store');
+
+Route::put('update/{id}', ['uses'=>'ProjectController@update', 'as'=>'update']);
+
+Route::delete('delete/{id}', ['uses'=>'ProjectController@delete', 'as'=>'delete']);
+
+
+
+
+
 
 
 
