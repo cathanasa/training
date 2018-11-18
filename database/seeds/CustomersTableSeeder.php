@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 //use Illiminate\Support\Facades\DB;
 //use App\Project;
 
