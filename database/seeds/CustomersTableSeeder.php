@@ -13,8 +13,8 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('customers')->insert([
+         /*DB::table('customers')->insert([
             'fullname' => str_random(20)
-        ]);
+        ]);*/
     }
 }
