@@ -17,7 +17,14 @@
 
 				<div>
 					<br>Customer:<br>
-					<input type="text" name="customer" value="">
+					<select name="customer_id">
+						<option selected disabled> choose by full name </option>
+						@foreach ($customers as $i)
+							<option value="{{ $i->id }}">
+								{{$i->first_name }} {{ $i->last_name }}
+							</option>
+						@endforeach
+					</select>
 				</div>
 
 				<div>

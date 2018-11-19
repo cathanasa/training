@@ -20,9 +20,12 @@
 		         <tr>
 		            <td>{{ $i->id }}</td>
 		            <td>{{ $i->name }}</td>
-		            <td>{{ $i->customer }}</td>
-		            <td>{{ $i->start_date }}</td>
-		            <td>{{ $i->end_date }}</td>
+		            <td>
+		            	{{ App\Customer::find($i->customer_id)->first_name }}
+		            	{{ App\Customer::find($i->customer_id)->last_name }}
+		            </td>
+		            <td>{{ Carbon\Carbon::parse($i->start_date)->format('m-d-Y') }}</td>
+		            <td>{{ Carbon\Carbon::parse($i->end_date)->format('m-d-Y') }}</td>
 		            <td>
 		            	@if ($i->active === 1)
 		            		Yes

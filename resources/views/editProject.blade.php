@@ -18,18 +18,27 @@
 
 				<div>
 					<br>Customer:<br>
-					<input type="text" name="customer" value="{{ $project->customer }}">
+					<select name="customer_id">
+						<option value="{{ $project->customer_id }}">
+							{{App\Customer::find($project->customer_id)->first_name}} {{App\Customer::find($project->customer_id)->last_name}}
+						</option>
+						@foreach ($customers as $i)
+							<option value="{{ $i->id }}">
+								{{$i->first_name }} {{ $i->last_name }}
+							</option>
+						@endforeach
+					</select>
 				</div>
 
 				<div>
 					<br>Start date:<br>
-					<input type="date" name="start_date">
+					<input type="date" name="start_date" value="{{ $project->start_date }}">
 					
 				</div>
 
 				<div>
 					<br>End date:<br>
-					<input type="date" name="end_date">
+					<input type="date" name="end_date" value="{{ $project->end_date }}">
 				</div>
 
 				<div>

@@ -2,9 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-//use Illiminate\Support\Facades\DB;
-//use App\Project;
-
 class CustomersTableSeeder extends Seeder
 {
     /**
@@ -14,8 +11,8 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-         /*DB::table('customers')->insert([
-            'fullname' => str_random(20)
-        ]);*/
+        factory(App\Customer::class, 50)->create()->each(function ($customer) {
+            $customer->save();
+        });
     }
 }

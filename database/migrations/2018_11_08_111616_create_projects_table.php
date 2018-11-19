@@ -17,7 +17,6 @@ class CreateProjectsTable extends Migration
 
             $table->increments('id');
             $table->string('name');
-            $table->string('customer');
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('active');

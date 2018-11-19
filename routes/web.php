@@ -15,17 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('new', function(){
-	return view('newProject');
-});
+Route::get('index', 'ProjectController@index');
 
-Route::get('index', 'ProjectController@viewProjects');
+Route::get('new', 'ProjectController@new');
+
+Route::post('store', 'ProjectController@store');
 
 Route::get('view/{id}', ['uses'=>'ProjectController@view', 'as'=>'view']);
 
 Route::get('edit/{id}', ['uses'=>'ProjectController@edit', 'as'=>'edit']);
-
-Route::post('store', 'ProjectController@store');
 
 Route::put('update/{id}', ['uses'=>'ProjectController@update', 'as'=>'update']);
 

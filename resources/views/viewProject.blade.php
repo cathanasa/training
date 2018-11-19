@@ -17,18 +17,18 @@
 
 				<div>
 					<br>Customer:<br>
-					<input type="text" name="customer" value="{{ $project->customer }}" readonly>
+					<input type="text" name="customer" value="{{App\Customer::find($project->customer_id)->first_name}} {{App\Customer::find($project->customer_id)->last_name}}" readonly>
 				</div>
 
 				<div>
 					<br>Start date:<br>
-					<input type="date" name="start_date" readonly>
+					<input type="date" name="start_date" value="{{ $project->start_date }}" readonly>
 					
 				</div>
 
 				<div>
 					<br>End date:<br>
-					<input type="date" name="end_date" readonly>
+					<input type="date" name="end_date" value="{{ $project->end_date }}" readonly>
 				</div>
 
 				<div>
