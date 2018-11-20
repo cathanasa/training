@@ -23,7 +23,6 @@
 				<div>
 					<br>Start date:<br>
 					<input type="date" name="start_date" value="{{ $project->start_date }}" readonly>
-					
 				</div>
 
 				<div>
@@ -54,6 +53,16 @@
 					<textarea rows="6" cols="21" name="description" readonly>
 						{{ $project->description }}
 					</textarea>
+				</div>
+
+				<div>
+					<br>Created at:<br>
+					{{ $project->created_at->format('m/d/Y') }}
+				</div>
+
+				<div>
+					<br>Updated at:<br>
+					{{ $project->updated_at->format('m/d/Y') }}
 				</div>
 
 				<div>

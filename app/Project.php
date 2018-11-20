@@ -11,5 +11,5 @@ class Project extends Model
     protected $fillable = ['id', 'name', 'customer', 'start_date', 
     'end_date', 'active', 'budget', 'description'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 }

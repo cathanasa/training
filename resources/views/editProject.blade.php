@@ -4,6 +4,15 @@
 		<title>Edit project</title>
 	</head>
 	<body>
+		@if ($errors->any())
+    		<div class="alert alert-danger">
+        		<ul>
+            		@foreach ($errors->all() as $error)
+                		<li>{{ $error }}</li>
+            		@endforeach
+        		</ul>
+   			 </div>
+		@endif
 		<b><h1>Edit project</h1></b>
 		<div class="content">
 			<form class="" action="{{ route('update', ['id'=>$project->id]) }}" method="post">
@@ -64,6 +73,16 @@
 					<textarea rows="6" cols="21" name="description">
 						{{ $project->description }}
 					</textarea>
+				</div>
+
+				<div>
+					<br>Created at:<br>
+					{{ $project->created_at->format('m/d/Y') }}
+				</div>
+
+				<div>
+					<br>Updated at:<br>
+					{{ $project->updated_at->format('m/d/Y') }}
 				</div>
 
 				<div>

@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->boolean('active');
             $table->bigInteger('budget');
             $table->string('description');
+            $table->timestamps();
 
         });
     }

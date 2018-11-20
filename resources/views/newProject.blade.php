@@ -4,6 +4,15 @@
 		<title>New project</title>
 	</head>
 	<body>
+		@if ($errors->any())
+    		<div class="alert alert-danger">
+        		<ul>
+            		@foreach ($errors->all() as $error)
+                		<li>{{ $error }}</li>
+            		@endforeach
+        		</ul>
+   			 </div>
+		@endif
 		<b><h1>New project</h1></b>
 		<div class="content">
 			<form class="" action="{{URL::to('store')}}" method="post">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\Customer;
@@ -33,7 +35,10 @@ class ProjectController extends Controller
         return view('editProject', ['project' => $project, 'customers' => $customers]);
     }
 
-    public function store(Request $request){
+    public function store(ProjectStoreRequest $request){
+
+        $validatedData = $request->validated();
+
         $project = new Project;
         
         $project->name = $request->input('name');
@@ -48,7 +53,10 @@ class ProjectController extends Controller
         return redirect('index');
     }
 
-    public function update($id , Request $request){
+    public function update($id , ProjectUpdateRequest $request){
+        
+        $validatedData = $request->validated();
+
         $project = Project::find($id);
 
         $project->name = $request->input('name');
