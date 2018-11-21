@@ -29,7 +29,7 @@ Route::put('update/{id}', ['uses'=>'ProjectController@update', 'as'=>'update']);
 
 Route::delete('delete/{id}', ['uses'=>'ProjectController@delete', 'as'=>'delete']);
 
-
+Route::get('confirm/{id}', ['uses'=>'ProjectController@confirm', 'as'=>'confirm']);
 
 
 

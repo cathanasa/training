@@ -23,15 +23,15 @@ class ProjectStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:30|unique:projects,name|', 
-            'customer_id' => 'required', 
-            'start_date' => 'required|after:yesterday', 
-            'end_date' => 'required|after:start_date', 
-            'active' => 'required', 
-            'budget' => 'required|integer', 
-            'description' => 'required'
-        ];
+        $rules['name'] = 'required|max:30|unique:projects,name|';
+        $rules['customer_id'] = 'required';
+        $rules['start_date'] = 'required|after:yesterday';
+        $rules['end_date'] = 'required|after_or_equal:start_date';
+        $rules['active'] = 'required';
+        $rules['budget'] = 'required|integer';
+        $rules['description'] = 'required';
+
+        return $rules;
     }
 
     /**
@@ -43,13 +43,13 @@ class ProjectStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required!',
-            'name.unique:projects' => 'There is a project created with the same name!', 
-            'name.max:30' => 'Give a shorter name!',
+            'name.unique' => 'There is a project created with the same name!', 
+            'name.max' => 'Give a shorter name!',
             'customer_id.required'  => 'A customer choice is required!', 
             'start_date.required' => 'Start date is required!',
-            'start_date.after:yesterday' => 'Start date cannot be a date before today!', 
+            'start_date.after' => 'Start date cannot be a date before today!', 
             'end_date.required' => 'End date is required!',
-            'end_date.after:yesterday' => 'End date cannot be a date before start date!', 
+            'end_date.after_or_equal' => 'End date cannot be a date before start date!', 
             'active.required' => 'Active state of the project is required!',
             'budget.required' => 'Budget is required!',
             'budget.integer' => 'Bugdet must be an integer value!',

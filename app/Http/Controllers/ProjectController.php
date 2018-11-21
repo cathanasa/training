@@ -35,6 +35,11 @@ class ProjectController extends Controller
         return view('editProject', ['project' => $project, 'customers' => $customers]);
     }
 
+    public function confirm($id){
+        $project = Project::find($id);
+        return view('confirmation', ['project' => $project]);
+    }
+
     public function store(ProjectStoreRequest $request){
 
         $validatedData = $request->validated();
