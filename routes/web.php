@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('filter', 'ProjectController@filter');
+
 Route::get('index', 'ProjectController@index');
 
 Route::get('new', 'ProjectController@new');

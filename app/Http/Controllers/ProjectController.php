@@ -14,8 +14,30 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-    public function filter(){
+    public function filter(Request $request){
+
+        if ($request->has('name')){
+            $projects = Project::where('name', $request->input('name'))->get();
+            return view('viewAll', ['projects' => $projects]);
+        }
+
+        if ($request->has('first_name')){
+            $customers = Customer::where('first_name', $request->input('first_name'))->get();
+            foreach ($customers as $customer){
+                $projects = Project::where('customer_id', $customer->id)->get();    
+            }
+            return view('viewAll', ['projects' => $projects]);
+        }
+
+        if ($request->has('last_name')){
+            $customers = Customer::where('last_name', $request->input('last_name'))->get();
+            foreach ($customers as $customer){
+                $projects = Project::where('customer_id', $customer->id)->get();    
+            }
+            return view('viewAll', ['projects' => $projects]);
+        }
         
+        return view('viewAll', ['projects' => Project::get()]);
     }
 
     public function index(){

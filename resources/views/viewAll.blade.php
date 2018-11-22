@@ -5,6 +5,11 @@
 	</head>	
 	<body>
 		<b><h1>Projects</h1></b>
+		<a href="{{URL::to('index')}}">Home</a><br><br>
+		<form class="" action="{{URL::to('filter')}}" method="get">
+      		<input type="search" name="name" placeholder="Search by name">
+      		<button type="submit" name="button">Go</button>
+      	</form>
 		<table id="table_id" class="display" border = 1>
 	         <thead>
 	         	<tr>
