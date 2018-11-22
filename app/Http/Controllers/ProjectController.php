@@ -14,6 +14,10 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+    public function filter(){
+        
+    }
+
     public function index(){
         $projects =  Project::get();
         return view('viewAll', ['projects' => $projects]);
