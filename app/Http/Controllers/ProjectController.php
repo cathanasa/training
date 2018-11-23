@@ -16,28 +16,26 @@ class ProjectController extends Controller
 {
     public function filter(Request $request){
 
-        if ($request->has('name')){
-            $projects = Project::where('name', $request->input('name'))->get();
+        $projects = Project::where('name', $request->input('search_field'))->get();
+        if ($projects->count() != 0){
             return view('viewAll', ['projects' => $projects]);
         }
-
-        if ($request->has('first_name')){
-            $customers = Customer::where('first_name', $request->input('first_name'))->get();
+        else{
+            $customers = Customer::where('first_name', $request->input('search_field'))->get();
             foreach ($customers as $customer){
-                $projects = Project::where('customer_id', $customer->id)->get();    
+                $projects = $customer->projects;    
             }
-            return view('viewAll', ['projects' => $projects]);
-        }
-
-        if ($request->has('last_name')){
-            $customers = Customer::where('last_name', $request->input('last_name'))->get();
-            foreach ($customers as $customer){
-                $projects = Project::where('customer_id', $customer->id)->get();    
+            if ($projects->count() != 0){
+                return view('viewAll', ['projects' => $projects]);
             }
-            return view('viewAll', ['projects' => $projects]);
+            else{
+                $customers = Customer::where('last_name', $request->input('search_field'))->get();
+                foreach ($customers as $customer){
+                    $projects = $customer->projects;    
+                }
+                return view('viewAll', ['projects' => $projects]);
+            }
         }
-        
-        return view('viewAll', ['projects' => Project::get()]);
     }
 
     public function index(){
@@ -107,5 +105,4 @@ class ProjectController extends Controller
         $project->delete();
         return redirect('index');
     }
-
 }
