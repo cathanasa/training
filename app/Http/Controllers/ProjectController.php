@@ -14,6 +14,30 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+    public function filter(Request $request){
+
+        $projects = Project::where('name', $request->input('search_field'))->get();
+        if ($projects->count() != 0){
+            return view('viewAll', ['projects' => $projects]);
+        }
+        else{
+            $customers = Customer::where('first_name', $request->input('search_field'))->get();
+            foreach ($customers as $customer){
+                $projects = $customer->projects;    
+            }
+            if ($projects->count() != 0){
+                return view('viewAll', ['projects' => $projects]);
+            }
+            else{
+                $customers = Customer::where('last_name', $request->input('search_field'))->get();
+                foreach ($customers as $customer){
+                    $projects = $customer->projects;    
+                }
+                return view('viewAll', ['projects' => $projects]);
+            }
+        }
+    }
+
     public function index(){
         $projects =  Project::get();
         return view('viewAll', ['projects' => $projects]);
@@ -81,5 +105,4 @@ class ProjectController extends Controller
         $project->delete();
         return redirect('index');
     }
-
 }

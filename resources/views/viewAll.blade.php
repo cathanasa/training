@@ -5,6 +5,11 @@
 	</head>	
 	<body>
 		<b><h1>Projects</h1></b>
+		<a href="{{URL::to('index')}}">Home</a><br><br>
+		<form class="" action="{{URL::to('filter')}}" method="get">
+      		<input type="search" name="search_field" placeholder="Search" required>
+      		<button type="submit" name="button">Go</button>
+      	</form>
 		<table id="table_id" class="display" border = 1>
 	         <thead>
 	         	<tr>
@@ -24,8 +29,8 @@
 		            	<td>{{ $i->id }}</td>
 		            	<td>{{ $i->name }}</td>
 		            	<td>
-		            		{{ App\Customer::find($i->customer_id)->first_name }}
-		            		{{ App\Customer::find($i->customer_id)->last_name }}
+		            		{{ $i->customer->first_name }}
+		            		{{ $i->customer->last_name }}
 		            	</td>
 		            	<td>{{ Carbon\Carbon::parse($i->start_date)->format('m-d-Y') }}</td>
 		            	<td>{{ Carbon\Carbon::parse($i->end_date)->format('m-d-Y') }}</td>

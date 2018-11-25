@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('filter', 'ProjectController@filter');
+
 Route::get('index', 'ProjectController@index');
 
 Route::get('new', 'ProjectController@new');
@@ -30,9 +32,3 @@ Route::put('update/{id}', ['uses'=>'ProjectController@update', 'as'=>'update']);
 Route::delete('delete/{id}', ['uses'=>'ProjectController@delete', 'as'=>'delete']);
 
 Route::get('confirm/{id}', ['uses'=>'ProjectController@confirm', 'as'=>'confirm']);
-
-
-
-
-
-
