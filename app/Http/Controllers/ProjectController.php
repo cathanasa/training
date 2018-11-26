@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-    public function filter(Request $request){
+    /*public function filter(Request $request){
 
         $projects = Project::where('name', $request->input('search_field'))->get();
         if ($projects->count() != 0){
@@ -36,6 +36,11 @@ class ProjectController extends Controller
                 return view('viewAll', ['projects' => $projects]);
             }
         }
+    }*/
+
+    public function filter(Request $request){
+
+        
     }
 
     public function index(){
