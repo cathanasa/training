@@ -26,7 +26,7 @@ class ProjectUpdateRequest extends FormRequest
     {
         $rules['name'] = ['required', Rule::unique('projects')->ignore($this->id)];
         $rules['customer_id'] = 'required';
-        $rules['start_date'] = 'required|after:yesterday';
+        $rules['start_date'] = 'required';
         $rules['end_date'] = 'required|after_or_equal:start_date';
         $rules['active'] = 'required';
         $rules['budget'] = 'required|integer';
@@ -47,8 +47,7 @@ class ProjectUpdateRequest extends FormRequest
             'name.unique' => 'There is a project created with the same name!', 
             'name.max' => 'Give a shorter name!',
             'customer_id.required'  => 'A customer choice is required!', 
-            'start_date.required' => 'Start date is required!',
-            'start_date.after' => 'Start date cannot be a date before today!', 
+            'start_date.required' => 'Start date is required!', 
             'end_date.required' => 'End date is required!',
             'end_date.after_or_equal' => 'End date cannot be a date before start date!', 
             'active.required' => 'Active state of the project is required!',

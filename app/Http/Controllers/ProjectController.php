@@ -14,10 +14,11 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-    /*public function filter(Request $request){
+    public function filter(Request $request){
 
         $projects = Project::where('name', $request->input('search_field'))->get();
         if ($projects->count() != 0){
+            $projects->toJson();
             return view('viewAll', ['projects' => $projects]);
         }
         else{
@@ -26,21 +27,34 @@ class ProjectController extends Controller
                 $projects = $customer->projects;    
             }
             if ($projects->count() != 0){
+                $projects->toJson();
                 return view('viewAll', ['projects' => $projects]);
             }
             else{
                 $customers = Customer::where('last_name', $request->input('search_field'))->get();
                 foreach ($customers as $customer){
-                    $projects = $customer->projects;    
+                    $projects = $customer->projects;
                 }
-                return view('viewAll', ['projects' => $projects]);
+                if ($projects->count() != 0){
+                    $projects->toJson();
+                    return view('viewAll', ['projects' => $projects]);
+                }
+                else{
+                    $data_arr = explode(" ", $request->input('search_field'));
+                    if (count($data_arr) === 2){
+                        $customers = Customer::where('first_name', $data_arr[0])->where('last_name', $data_arr[1])->get();
+                        foreach ($customers as $customer){
+                            $projects = $customer->projects;
+                        }
+                        $projects->toJson();
+                        return view('viewAll', ['projects' => $projects]);
+                    }
+                    else{
+                        return view('viewAll', ['projects' => $projects]);
+                    }
+                }
             }
         }
-    }*/
-
-    public function filter(Request $request){
-
-        
     }
 
     public function index(){
