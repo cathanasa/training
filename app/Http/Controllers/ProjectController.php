@@ -19,8 +19,6 @@ class ProjectController extends Controller
         
         $projects = Project::where('name', $request->input('search_field'))->get();
         if ($projects->count() != 0){
-            //$projects = $projects->toJson();
-            //dd($projects);
             return view('viewAll', ['projects' => $projects]);
         }
         else{

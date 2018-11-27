@@ -54,8 +54,5 @@
       	<form class="" action="{{URL::to('new')}}" method="get">
       		<br><br><button type="submit" name="button">New Project</button>
       	</form>
-      	<script>
-      		
-      	</script>
 	</body>
 </html>
