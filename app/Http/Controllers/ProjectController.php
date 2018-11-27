@@ -12,13 +12,15 @@ use App\Project;
 use App\Customer;
 use Carbon\Carbon;
 
+
 class ProjectController extends Controller
 {
     public function filter(Request $request){
-
+        
         $projects = Project::where('name', $request->input('search_field'))->get();
         if ($projects->count() != 0){
-            $projects->toJson();
+            //$projects = $projects->toJson();
+            //dd($projects);
             return view('viewAll', ['projects' => $projects]);
         }
         else{
@@ -27,7 +29,6 @@ class ProjectController extends Controller
                 $projects = $customer->projects;    
             }
             if ($projects->count() != 0){
-                $projects->toJson();
                 return view('viewAll', ['projects' => $projects]);
             }
             else{
@@ -36,7 +37,6 @@ class ProjectController extends Controller
                     $projects = $customer->projects;
                 }
                 if ($projects->count() != 0){
-                    $projects->toJson();
                     return view('viewAll', ['projects' => $projects]);
                 }
                 else{
@@ -46,7 +46,6 @@ class ProjectController extends Controller
                         foreach ($customers as $customer){
                             $projects = $customer->projects;
                         }
-                        $projects->toJson();
                         return view('viewAll', ['projects' => $projects]);
                     }
                     else{

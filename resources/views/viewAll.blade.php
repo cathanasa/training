@@ -6,8 +6,8 @@
 	<body>
 		<b><h1>Projects</h1></b>
 		<a href="{{URL::to('index')}}">Home</a><br><br>
-		<form class="" enctype="application/json" action="{{URL::to('filter')}}" method="get">
-      		<input type="search" name="search_field" placeholder="Search" required>
+		<form class="" action="{{URL::to('filter')}}" method="get">
+			<input type="text" name="search_field" placeholder="Search" ">
       		<button type="submit" name="button">Go</button>
       	</form>
 		<table id="table_id" class="display" border = 1>
