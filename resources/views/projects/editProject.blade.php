@@ -15,7 +15,7 @@
 		@endif
 		<b><h1>Edit project</h1></b>
 		<div class="content">
-			<form class="" action="{{ route('update', ['id'=>$project->id]) }}" method="post">
+			<form class="" action="{{ route('projects.update', ['id'=>$project->id]) }}" method="post">
 				
 				@method('PUT') 
 				@csrf
@@ -88,7 +88,7 @@
 				<div>
 					<br>
 					<button type="submit" name="button">OK</button>
-					<a href="{{URL::to('index')}}">Cancel</a>
+					<a href="{{ route('projects.index') }}">Cancel</a>
 				</div>
 			</form>
 		</div>	

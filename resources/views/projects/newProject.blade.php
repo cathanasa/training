@@ -15,7 +15,7 @@
 		@endif
 		<b><h1>New project</h1></b>
 		<div class="content">
-			<form class="" action="{{URL::to('store')}}" method="post">
+			<form class="" action="{{ route('projects.store') }}" method="post">
 
 				@csrf
 
@@ -68,7 +68,7 @@
 				<div>
 					<br>
 					<button type="submit" name="button">OK</button>
-					<a href="{{URL::to('index')}}">Cancel</a>
+					<a href="{{ route('projects.index') }}">Cancel</a>
 				</div>
 			</form>
 		</div>	

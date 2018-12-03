@@ -6,7 +6,7 @@
 	<body>
 		<b><h1>View project</h1></b>
 		<div class="content">
-			<form class="" action="{{ URL::to('index') }}" method="get">
+			<form class="" action="{{ route('projects.index') }}" method="get">
 				
 				@csrf
 

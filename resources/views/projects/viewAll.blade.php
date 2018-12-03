@@ -5,8 +5,8 @@
 	</head>	
 	<body>
 		<b><h1>Projects</h1></b>
-		<a href="{{URL::to('index')}}">Home</a><br><br>
-		<form class="" action="{{URL::to('filter')}}" method="get">
+		<a href="{{ route('projects.index') }}">Home</a><br><br>
+		<form class="" action="{{ route('projects.index') }}" method="get">
 			<input type="text" name="search_field" placeholder="Search" ">
       		<button type="submit" name="button">Go</button>
       	</form>
@@ -43,16 +43,19 @@
 		            	</td>
 		            	<td>{{ $i->budget }}</td>
 		            	<td>
-		            		<a href="{{ route('view', ['id'=>$i->id]) }}">View</a>
-		            		<a href="{{ route('edit', ['id'=>$i->id]) }}">Edit</a>
+		            		<a href="{{ route('projects.show', ['id'=>$i->id]) }}">View</a>
+		            		<a href="{{ route('projects.edit', ['id'=>$i->id]) }}">Edit</a>
 		            		<a href="{{ route('confirm', ['id'=>$i->id]) }}">Delete</a>
 		            	</td>
 		         	</tr>
 	         	@endforeach
 	         </tbody>
       	</table>
-      	<form class="" action="{{URL::to('new')}}" method="get">
+      	<form class="" action="{{ route('projects.create') }}" method="get">
       		<br><br><button type="submit" name="button">New Project</button>
       	</form>
+      	<script>
+      		
+      	</script>
 	</body>
 </html>

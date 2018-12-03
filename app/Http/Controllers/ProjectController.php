@@ -54,25 +54,33 @@ class ProjectController extends Controller
         }
     }
 
-    public function index(){
-        $projects =  Project::get();
-        return view('viewAll', ['projects' => $projects]);
+    public function index(Request $request){
+        if ($request->filled('search_field')){
+            $projects = Project::whereName($request->search_field)->orWhere('customer', function($query){
+                $query->whereFirstName($request->search_field)->orWhereLastName($request->search_field)
+            })->get();
+            return view('projects.viewAll', ['projects' => $projects]);
+        }
+        else{
+            $projects =  Project::get();
+            return view('projects.viewAll', ['projects' => $projects]);
+        }
     }
 
-    public function new(){
+    public function create(){
         $customers = Customer::get();
-        return view('newProject', ['customers' => $customers]);
+        return view('projects.newProject', ['customers' => $customers]);
     }
 
-    public function view($id){
+    public function show($id){
         $project = Project::find($id);
-        return view('viewProject', ['project' => $project]);
+        return view('projects.viewProject', ['project' => $project]);
     }
 
     public function edit($id){
         $project = Project::find($id);
         $customers = Customer::get();
-        return view('editProject', ['project' => $project, 'customers' => $customers]);
+        return view('projects.editProject', ['project' => $project, 'customers' => $customers]);
     }
 
     public function confirm($id){
@@ -82,43 +90,32 @@ class ProjectController extends Controller
 
     public function store(ProjectStoreRequest $request){
 
-        $validatedData = $request->validated();
+        $project = Project::create($request->all());
 
-        $project = new Project;
-        
-        $project->name = $request->input('name');
-        $project->customer_id = $request->input('customer_id');
         $project->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
         $project->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
-        $project->active = $request->input('active');
-        $project->budget = $request->input('budget');
-        $project->description = $request->input('description');
 
         $project->save();
-        return redirect('index');
+
+        return redirect()->route('projects.index');
     }
 
     public function update($id , ProjectUpdateRequest $request){
         
-        $validatedData = $request->validated();
-
         $project = Project::find($id);
+        $project->update($request->all());
 
-        $project->name = $request->input('name');
-        $project->customer_id = $request->input('customer_id');
         $project->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
         $project->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
-        $project->active = $request->input('active');
-        $project->budget = $request->input('budget');
-        $project->description = $request->input('description');
 
         $project->save();
-        return redirect('index');
+
+        return redirect()->route('projects.index');
     }
 
-    public function delete($id){
+    public function destroy($id){
         $project = Project::find($id);
         $project->delete();
-        return redirect('index');
+        return redirect()->route('projects.index');
     }
 }
