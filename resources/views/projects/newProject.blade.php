@@ -21,13 +21,22 @@
 
 				<div>
 					Name:<br>
-					<input type="text" name="name" value="">
+					<input type="text" name="name" value="{{ old('name') }}">
 				</div>
 
 				<div>
 					<br>Customer:<br>
 					<select name="customer_id">
-						<option selected disabled></option>
+
+						@if ( old('customer_id') != NULL)
+							<option selected value="{{ old('customer_id') }}">
+								{{ App\Customer::find(old('customer_id'))->first_name }}
+								{{ App\Customer::find(old('customer_id'))->last_name }}
+							</option>
+						@else
+							<option selected disabled>choose by full name</option>
+						@endif
+
 						@foreach ($customers as $i)
 							<option value="{{ $i->id }}">
 								{{$i->first_name }} {{ $i->last_name }}
@@ -38,31 +47,37 @@
 
 				<div>
 					<br>Start date:<br>
-					<input type="date" name="start_date" value="">
-					
+					<input type="date" name="start_date" value="{{ old('start_date') }}">
 				</div>
 
 				<div>
 					<br>End date:<br>
-					<input type="date" name="end_date" value="">
+					<input type="date" name="end_date" value="{{ old('end_date') }}">
 				</div>
 
 				<div>
 					<br>Active:<br>
 					<select name="active">
-						<option value="1">Yes</option>
-						<option value="0">No</option>
+						@if ( old('active') == 1)
+							<option value=""></option>
+							<option selected value="1">Yes</option>
+							<option value="0">No</option>
+						@else
+							<option value=""></option>
+							<option value="1">Yes</option>
+							<option selected value="0">No</option>
+						@endif
 					</select>
 				</div>
 
 				<div>
 					<br>Budget:<br>
-					<input type="text" name="budget" value="">
+					<input type="text" name="budget" value="{{ old('budget') }}">
 				</div>
 
 				<div>
 					<br>Description:<br> 
-					<textarea rows="6" cols="21" name="description" value=""></textarea>
+					<textarea rows="6" cols="21" name="description">{{ old('description') }}</textarea>
 				</div>
 
 				<div>

@@ -29,7 +29,8 @@
 					<br>Customer:<br>
 					<select name="customer_id">
 						<option value="{{ $project->customer_id }}">
-							{{App\Customer::find($project->customer_id)->first_name}} {{App\Customer::find($project->customer_id)->last_name}}
+							{{$project->customer->first_name}}
+							{{$project->customer->last_name}}
 						</option>
 						@foreach ($customers as $i)
 							<option value="{{ $i->id }}">
@@ -53,12 +54,14 @@
 				<div>
 					<br>Active:<br>
 					<select name="active">
-						@if ($project->active === 1)
-							<option value="1">Yes</option>
+						@if ($project->active == 1)
+							<option value=""></option>
+							<option selected value="1">Yes</option>
 							<option value="0">No</option>
 						@else
-							<option value="0">No</option>	
+							<option value=""></option>
 							<option value="1">Yes</option>
+							<option selected value="0">No</option>	
 						@endif	
 					</select>
 				</div>

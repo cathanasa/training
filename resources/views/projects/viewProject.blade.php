@@ -32,15 +32,11 @@
 
 				<div>
 					<br>Active:<br>
-					<select name="active" disabled>
-						@if ($project->active === 1)
-							<option value="1">Yes</option>
-							<option value="0">No</option>
+						@if ($project->active == 1)
+							<input type="text" value="Yes" readonly>
 						@else
-							<option value="0">No</option>	
-							<option value="1">Yes</option>
+							<input type="text" value="No" readonly>
 						@endif	
-					</select>
 				</div>
 
 				<div>
