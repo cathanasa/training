@@ -15,51 +15,22 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-    public function filter(Request $request){
-        
-        $projects = Project::where('name', $request->input('search_field'))->get();
-        if ($projects->count() != 0){
-            return view('viewAll', ['projects' => $projects]);
-        }
-        else{
-            $customers = Customer::where('first_name', $request->input('search_field'))->get();
-            foreach ($customers as $customer){
-                $projects = $customer->projects;    
-            }
-            if ($projects->count() != 0){
-                return view('viewAll', ['projects' => $projects]);
-            }
-            else{
-                $customers = Customer::where('last_name', $request->input('search_field'))->get();
-                foreach ($customers as $customer){
-                    $projects = $customer->projects;
-                }
-                if ($projects->count() != 0){
-                    return view('viewAll', ['projects' => $projects]);
-                }
-                else{
-                    $data_arr = explode(" ", $request->input('search_field'));
-                    if (count($data_arr) === 2){
-                        $customers = Customer::where('first_name', $data_arr[0])->where('last_name', $data_arr[1])->get();
-                        foreach ($customers as $customer){
-                            $projects = $customer->projects;
-                        }
-                        return view('viewAll', ['projects' => $projects]);
-                    }
-                    else{
-                        return view('viewAll', ['projects' => $projects]);
-                    }
-                }
-            }
-        }
-    }
-
+    
     public function index(Request $request){
         if ($request->filled('search_field')){
-            $projects = Project::whereName($request->search_field)->orWhere('customer', function($query){
-                $query->whereFirstName($request->search_field)->orWhereLastName($request->search_field)
-            })->get();
-            return view('projects.viewAll', ['projects' => $projects]);
+            $data_arr = explode(" ", $request->search_field);
+            if (count($data_arr) > 1){
+                $projects = Project::whereName($request->search_field)->orWhereHas('customer', function($query) use ($data_arr){
+                    $query->whereFirstName($data_arr[0])->whereLastName($data_arr[1]);
+                })->get();
+                return view('projects.viewAll', ['projects' => $projects]);
+            }
+            else{
+                $projects = Project::whereName($request->search_field)->orWhereHas('customer', function($query) use ($request){
+                    $query->whereFirstName($request->search_field)->orWhere('last_name', $request->search_field);
+                })->get();
+                return view('projects.viewAll', ['projects' => $projects]); 
+            }
         }
         else{
             $projects =  Project::get();

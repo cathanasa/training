@@ -27,7 +27,7 @@
 				<div>
 					<br>Customer:<br>
 					<select name="customer_id">
-						<option selected disabled> choose by full name </option>
+						<option selected disabled></option>
 						@foreach ($customers as $i)
 							<option value="{{ $i->id }}">
 								{{$i->first_name }} {{ $i->last_name }}
@@ -38,13 +38,13 @@
 
 				<div>
 					<br>Start date:<br>
-					<input type="date" name="start_date">
+					<input type="date" name="start_date" value="">
 					
 				</div>
 
 				<div>
 					<br>End date:<br>
-					<input type="date" name="end_date">
+					<input type="date" name="end_date" value="">
 				</div>
 
 				<div>
@@ -62,7 +62,7 @@
 
 				<div>
 					<br>Description:<br> 
-					<textarea rows="6" cols="21" name="description"></textarea>
+					<textarea rows="6" cols="21" name="description" value=""></textarea>
 				</div>
 
 				<div>

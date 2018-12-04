@@ -7,7 +7,7 @@
 		<b><h1>Projects</h1></b>
 		<a href="{{ route('projects.index') }}">Home</a><br><br>
 		<form class="" action="{{ route('projects.index') }}" method="get">
-			<input type="text" name="search_field" placeholder="Search" ">
+			<input type="text" name="search_field" placeholder="Search" required>
       		<button type="submit" name="button">Go</button>
       	</form>
 		<table id="table_id" class="display" border = 1>
