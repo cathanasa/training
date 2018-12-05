@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('projects', 'ProjectController');
-
 Route::get('filter', 'ProjectController@filter');
-
 Route::get('confirm/{id}', ['uses'=>'ProjectController@confirm', 'as'=>'confirm']);
+
+Route::get('quakes', 'QuakeController@store');
