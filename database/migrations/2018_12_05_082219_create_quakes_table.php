@@ -41,6 +41,7 @@ class CreateQuakesTable extends Migration
             $table->string('mag_type');
             $table->string('type');
             $table->string('title');
+            $table->longText('json');
 
             $table->text('description')->nullable();
 

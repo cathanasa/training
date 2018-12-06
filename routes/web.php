@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $quake = \App\Quake::find(1);
+	dd($quake->general_link);    
 });
 
 Route::resource('projects', 'ProjectController');

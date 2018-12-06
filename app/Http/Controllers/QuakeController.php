@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Quake;
+use App\Helpers\QuakeHelper;
 
 class QuakeController extends Controller
 {
@@ -40,10 +41,12 @@ class QuakeController extends Controller
         
         $strJson = file_get_contents("https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ak20419010&format=geojson");
         $dJson = json_decode($strJson, true);
-        // dd($dJson);
+        // echo '<pre>' . print_r($dJson, true) . '</pre>';
         $dJson['properties']['mag_type'] = $dJson['properties']['magType'];
         unset($dJson['properties']['magType']);
-        Quake::create($dJson['properties']);
+        $dJson['properties']['json'] = $strJson;
+        $quake = Quake::create($dJson['properties']);
+
     }
 
     /**
